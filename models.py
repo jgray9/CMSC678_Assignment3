@@ -94,3 +94,12 @@ class LinearClassifier(nn.Module):
     def forward(self, x):
         return self.layers(x.view(-1,28*28))
 
+class JointModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.autoencoder = LinearAutoEncoder()
+        self.classifier = LinearClassifier()
+    
+    def forward(self, x):
+        z = self.autoencoder.forward(x)
+        return self.classifier.forward(z)
