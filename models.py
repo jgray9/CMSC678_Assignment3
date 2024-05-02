@@ -38,7 +38,6 @@ class ConvAutoEncoder(nn.Module):
     def __init__(self) -> None:
         super().__init__()
         self.encoder = nn.Sequential(
-            nn.ReLU(),
             nn.Conv2d(1, 5, kernel_size=4, stride=2),
             nn.ReLU(),
             nn.Conv2d(5, 10, kernel_size=4, stride=1),
